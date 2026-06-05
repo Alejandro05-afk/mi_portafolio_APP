@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mi_portafolio/widgets/proyecto_card.dart';
-
+import '../widgets/proyecto_card.dart';
+import '../widgets/proyecto_card_mini.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,36 +8,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //color de fondo de la pantalla
       backgroundColor: Colors.grey[100],
-
-    //Barra superior
-    appBar: AppBar(
-      title: const Text('Mi Portafolio'),
-      centerTitle: true,
-      backgroundColor: Colors.blue,
-      foregroundColor: Colors.white,
-    ),
-    //contenido principal
-    body: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Mis proyectos',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[800],
+      appBar: AppBar(
+        title: const Text('Mi Portafolio'),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Mis Proyectos',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[800],
+              ),
             ),
-          ),
-          const SizedBox(height: 16),
-
-          const ProyectoCard(),
-        ],
-      )
-    )
+            const SizedBox(height: 16),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 0.85,
+                children: const [
+                  ProyectoCardMini(titulo: 'Proyecto 1', icono: Icons.web),
+                  ProyectoCardMini(titulo: 'Proyecto 2', icono: Icons.phone_android),
+                  ProyectoCardMini(titulo: 'Proyecto 3', icono: Icons.shopping_cart),
+                  ProyectoCardMini(titulo: 'Proyecto 4', icono: Icons.games),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
+
